@@ -25,9 +25,10 @@ task :get_date => :environment do
   if start_date.to_date-1.day > (Tracker.last ? Tracker.last.first_unavailable_at.to_date : Time.now.to_date)
     t = Tracker.new(:first_unavailable_at => start_date-1.day)
     h = Hominid::API.new('7f28b65048208c6ddea75375a3034eb6-us7')
-    #list = h.lists['data'].first
-    campaign = h.campaigns['data'].first
-    h.campaign_send_now(campaign['id'])
+    list = h.lists['data'].first
+    campaign = h.campaign_create('regular', {'list_id' => list['id'], 'subject' => 'New MegaBus Tickets on Sale!', 'from_email' => 'jon.piffle@gmail.com', 'from_name' => 'MB Tracker'}, {'html' => '<h1>Go get your tickets!</h1>', 'text' => 'Go get your tickets!'}, [], [])
+    puts campaign
+    h.campaign_send_now(campaign)
     t.save
   end
  end
