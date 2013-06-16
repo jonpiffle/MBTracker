@@ -1,0 +1,7 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  first_unavailable_at: 2013-06-15 15:57:36
+
+two:
+  first_unavailable_at: 2013-06-15 15:57:36
