@@ -8,7 +8,7 @@ task :get_date => :environment do
   originCode = 89
   destinationCode = 123
 
-  start_date = Tracker.last ? Tracker.last.first_unavailable_at : Time.now + 75.days
+  start_date = Tracker.last ? Tracker.last.first_unavailable_at : Time.now
 
   div = nil 
   while div.blank?
@@ -27,7 +27,6 @@ task :get_date => :environment do
     h = Hominid::API.new('7f28b65048208c6ddea75375a3034eb6-us7')
     #list = h.lists['data'].first
     campaign = h.campaigns['data'].first
-    puts campaign['id']
     h.campaign_send_now(campaign['id'])
     t.save
   end
